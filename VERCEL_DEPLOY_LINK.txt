@@ -1,0 +1,16 @@
+Vercel 快速部署链接
+=====================
+
+直接点击以下链接，一键部署到Vercel：
+
+https://vercel.com/new/clone?repository-url=https://github.com/wjyang001/daily-guide-app
+
+或者访问：
+https://vercel.com/new
+
+然后选择 "Import Git Repository"，找到 daily-guide-app 仓库。
+
+部署完成后，你会获得一个类似以下的链接：
+https://daily-guide-app.vercel.app
+
+把这个链接保存好，这就是你的小程序访问地址！
