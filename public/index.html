@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>营业执照注销 - 每日工作引导</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 底部导航栏 -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active" data-page="home">
+            <i class="fas fa-home"></i>
+            <span>首页</span>
+        </a>
+        <a href="#" class="nav-item" data-page="today">
+            <i class="fas fa-calendar-day"></i>
+            <span>今日任务</span>
+        </a>
+        <a href="#" class="nav-item" data-page="templates">
+            <i class="fas fa-file-alt"></i>
+            <span>模板库</span>
+        </a>
+        <a href="#" class="nav-item" data-page="scripts">
+            <i class="fas fa-comments"></i>
+            <span>话术库</span>
+        </a>
+        <a href="#" class="nav-item" data-page="stats">
+            <i class="fas fa-chart-line"></i>
+            <span>数据统计</span>
+        </a>
+    </nav>
+
+    <!-- 首页 -->
+    <div class="page active" id="home">
+        <div class="header">
+            <div class="header-content">
+                <h1>营业执照注销助手</h1>
+                <p class="subtitle">每日工作引导系统</p>
+            </div>
+        </div>
+
+        <div class="streak-card">
+            <div class="streak-header">
+                <div class="streak-info">
+                    <div class="streak-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="streak-text">
+                        <span class="streak-number" id="streakDays">0</span>
+                        <span class="streak-label">天连续打卡</span>
+                    </div>
+                </div>
+                <div class="streak-badge" id="streakBadge">
+                    <i class="fas fa-medal"></i>
+                    <span>新手</span>
+                </div>
+            </div>
+            <div class="streak-calendar" id="streakCalendar"></div>
+        </div>
+
+        <div class="progress-card">
+            <div class="progress-header">
+                <h3>今日任务进度</h3>
+                <span class="progress-percent" id="progressPercent">0%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+            <div class="progress-stats">
+                <div class="stat-item">
+                    <span class="stat-number" id="completedTasks">0</span>
+                    <span class="stat-label">已完成</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="totalTasks">6</span>
+                    <span class="stat-label">总任务</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="quick-actions">
+            <h3 class="section-title">快速入口</h3>
+            <div class="action-grid">
+                <div class="action-item" onclick="showPage('today')">
+                    <div class="action-icon today"><i class="fas fa-lightbulb"></i></div>
+                    <span class="action-label">今日选题</span>
+                    <span class="action-desc">查看推荐选题</span>
+                </div>
+                <div class="action-item" onclick="showPage('templates')">
+                    <div class="action-icon template"><i class="fas fa-copy"></i></div>
+                    <span class="action-label">内容模板</span>
+                    <span class="action-desc">脚本/图文模板</span>
+                </div>
+                <div class="action-item" onclick="showPage('scripts')">
+                    <div class="action-icon script"><i class="fas fa-comment-dots"></i></div>
+                    <span class="action-label">话术库</span>
+                    <span class="action-desc">评论/私信话术</span>
+                </div>
+                <div class="action-item" onclick="showPage('stats')">
+                    <div class="action-icon stats"><i class="fas fa-chart-pie"></i></div>
+                    <span class="action-label">数据记录</span>
+                    <span class="action-desc">记录今日数据</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="todo-section">
+            <h3 class="section-title">今日待办</h3>
+            <div class="todo-list" id="homeTodoList"></div>
+        </div>
+
+        <div class="quote-card">
+            <i class="fas fa-quote-left"></i>
+            <p id="dailyQuote">坚持日更，数据会说话。今天的努力是明天成交的基础。</p>
+        </div>
+    </div>
+
+    <!-- 今日任务页 -->
+    <div class="page" id="today">
+        <div class="header compact">
+            <h2>今日任务</h2>
+            <p class="date" id="todayDate"></p>
+        </div>
+
+        <div class="content-card">
+            <div class="card-header">
+                <div class="card-title"><i class="fas fa-star"></i><span>今日选题推荐</span></div>
+                <span class="tag" id="topicType">痛点型</span>
+            </div>
+            <div class="topic-content">
+                <h3 id="topicTitle">营业执照不注销？小心这辈子后悔！</h3>
+                <div class="topic-meta">
+                    <span class="meta-item"><i class="fas fa-hashtag"></i> <span id="topicId">#1</span></span>
+                    <span class="meta-item"><i class="fas fa-clock"></i> <span id="topicDuration">60秒</span></span>
+                    <span class="meta-item"><i class="fas fa-video"></i> <span id="topicPlatform">抖音</span></span>
+                </div>
+                <div class="topic-tags" id="topicTags">
+                    <span class="topic-tag">痛点钩子</span>
+                    <span class="topic-tag">高互动</span>
+                </div>
+                <div class="topic-actions">
+                    <button class="btn btn-primary" onclick="viewTemplate()"><i class="fas fa-eye"></i> 查看模板</button>
+                    <button class="btn btn-secondary" onclick="copyTopic()"><i class="fas fa-copy"></i> 复制选题</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="task-section">
+            <h3 class="section-title">今日任务清单</h3>
+            <div class="task-list" id="todayTaskList"></div>
+        </div>
+
+        <div class="checkin-section">
+            <button class="btn btn-checkin" id="checkinBtn" onclick="doCheckin()">
+                <i class="fas fa-check-circle"></i><span>完成今日打卡</span>
+            </button>
+            <p class="checkin-hint">完成所有任务后点击打卡</p>
+        </div>
+    </div>
+
+    <!-- 模板库页 -->
+    <div class="page" id="templates">
+        <div class="header compact">
+            <h2>内容模板库</h2>
+            <p>短视频脚本 + 图文笔记模板</p>
+        </div>
+
+        <div class="template-tabs">
+            <div class="tab active" data-tab="video" onclick="switchTab('video')">短视频脚本</div>
+            <div class="tab" data-tab="graphic" onclick="switchTab('graphic')">图文笔记</div>
+            <div class="tab" data-tab="title" onclick="switchTab('title')">爆款标题</div>
+        </div>
+
+        <div class="template-content" id="templateContent"></div>
+    </div>
+
+    <!-- 话术库页 -->
+    <div class="page" id="scripts">
+        <div class="header compact">
+            <h2>话术库</h2>
+            <p>评论引流 + 私信话术</p>
+        </div>
+
+        <div class="script-tabs">
+            <div class="script-tab active" onclick="switchScriptTab('comment')">评论话术</div>
+            <div class="script-tab" onclick="switchScriptTab('private')">私信话术</div>
+            <div class="script-tab" onclick="switchScriptTab('guide')">主页设置</div>
+        </div>
+
+        <div id="scriptContent"></div>
+    </div>
+
+    <!-- 数据统计页 -->
+    <div class="page" id="stats">
+        <div class="header compact">
+            <h2>数据统计</h2>
+            <p>记录每日数据，追踪成长</p>
+        </div>
+
+        <div class="stats-overview">
+            <div class="stats-card primary">
+                <div class="stats-icon"><i class="fas fa-calendar-check"></i></div>
+                <div class="stats-value" id="totalCheckins">0</div>
+                <div class="stats-label">累计打卡天数</div>
+            </div>
+            <div class="stats-card secondary">
+                <div class="stats-icon"><i class="fas fa-fire"></i></div>
+                <div class="stats-value" id="currentStreak">0</div>
+                <div class="stats-label">当前连续天数</div>
+            </div>
+        </div>
+
+        <div class="data-form">
+            <div class="form-title"><i class="fas fa-edit"></i> 今日数据录入</div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">播放量</label>
+                    <input type="number" class="form-input" id="statViews" placeholder="0">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">点赞数</label>
+                    <input type="number" class="form-input" id="statLikes" placeholder="0">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">评论数</label>
+                    <input type="number" class="form-input" id="statComments" placeholder="0">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">私信数</label>
+                    <input type="number" class="form-input" id="statMessages" placeholder="0">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">成交单数</label>
+                <input type="number" class="form-input" id="statDeals" placeholder="0">
+            </div>
+            <button class="btn-submit" onclick="saveStats()">
+                <i class="fas fa-save"></i> 保存数据
+            </button>
+        </div>
+
+        <div class="history-section">
+            <h3 class="section-title">历史记录</h3>
+            <div id="historyList"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
