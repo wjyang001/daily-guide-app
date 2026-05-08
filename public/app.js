@@ -792,9 +792,14 @@ function showPage(pageName) {
     
     // 页面特定初始化
     if (pageName === 'templates') {
-        UI.renderTemplates('video');
+        // 延迟渲染确保DOM已更新
+        setTimeout(() => {
+            UI.renderTemplates('video');
+        }, 100);
     } else if (pageName === 'scripts') {
-        initScriptTabs();
+        setTimeout(() => {
+            initScriptTabs();
+        }, 100);
     } else if (pageName === 'stats') {
         UI.renderStats();
         UI.renderHistory();
@@ -910,23 +915,7 @@ function viewTemplate() {
 
 // 初始化话术标签
 function initScriptTabs() {
-    const container = document.getElementById('templates');
-    if (!container) return;
-    
-    // 检查是否已经初始化
-    if (container.querySelector('.script-tabs')) return;
-    
-    // 添加话术标签页
-    const tabsHtml = `
-        <div class="script-tabs">
-            <div class="script-tab active" onclick="switchScriptTab('comment')">评论话术</div>
-            <div class="script-tab" onclick="switchScriptTab('private')">私信话术</div>
-            <div class="script-tab" onclick="switchScriptTab('guide')">主页设置</div>
-        </div>
-        <div id="scriptContent"></div>
-    `;
-    
-    container.insertAdjacentHTML('beforeend', tabsHtml);
+    // 直接渲染评论话术
     UI.renderScripts('comment');
 }
 
