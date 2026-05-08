@@ -1,0 +1,18 @@
+{
+  "name": "daily-guide-app",
+  "version": "1.0.0",
+  "description": "营业执照注销业务 - 每日工作引导小程序",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "build": "echo 'Static site - no build needed'"
+  },
+  "keywords": [
+    "营业执照",
+    "注销",
+    "内容营销",
+    "每日引导"
+  ],
+  "author": "",
+  "license": "MIT"
+}
